@@ -78,7 +78,7 @@ def partidosganados():
         print(f" {equipoingresado} gano {partidosganadoslocal} de local")
     elif localovisitante == "visitante":
         print(f" {equipoingresado} gano {partidosganadosvisit} de visitante")
-    elif localovisitante != "local" or localovisitante != "visitante":
+    elif localovisitante != "local" and localovisitante != "visitante":
         print('Debe escribir "local" o "visitante"')
 
 ################################# Verificar partidos perdidos  de local o visitante.
@@ -107,7 +107,7 @@ def partidosperdidos():
         print(f" {equipoingresado} perdio {partidosperdidoslocal} de local")
     if localovisitante == "visitante":
         print(f" {equipoingresado} perdio {partidosperdidosvisit} de visitante")
-    elif localovisitante != "local" or localovisitante != "visitante":
+    elif localovisitante != "local" and localovisitante != "visitante":
         print('Debe escribir "local" o "visitante"')
 
 
@@ -132,10 +132,10 @@ def ultimos10():
 
 ############################ Grabar un nuevo csv con los partidos solo del equipo ingresado
     archivo.close()
-    f = open('./futbol_python/porequipo.csv','w').writelines([line for line in lineas_filtradas])
+    f = open('./porequipo.csv','w').writelines([line for line in lineas_filtradas])
    
 
-    nombre_archivo2 = "./futbol_python/porequipo.csv"
+    nombre_archivo2 = "./porequipo.csv"
 
     with open(nombre_archivo2, "r") as archivo2:    
         data = list(csv.DictReader(archivo2))
@@ -185,8 +185,8 @@ def ultimorival():
             equiporivaldelocal = resultado['away_team']
         for resultado in partidosvisit[-1 :]:
             equiporivaldevisitante = resultado['home_team']
-    print()
-    print()
+        print()
+        print()    
         if localovisitante == "local":
             print(f" {equipoingresado} jugo su ultimo partido de local contra  {equiporivaldelocal}")
         elif localovisitante == "visitante":
