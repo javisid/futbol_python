@@ -1,7 +1,7 @@
 import csv
 from collections import OrderedDict
 from threading import local
-# Funcion Menu Opciones
+################################# Funcion Menu Opciones
 def menu_opciones():
     print()
     print()
@@ -40,7 +40,7 @@ def presentacion_listaequipos():
     return nombres_norep        
 
 
-# Funcion para verificacion de equipo ingresado valido
+################################# Funcion para verificacion de equipo ingresado valido
 def validacionequipo(): 
     equipook=0
     global equiposvalidos
@@ -53,7 +53,7 @@ def validacionequipo():
                 equipook = equipook +1
                 return equipo_ingresado
 
-# Vericar partidos ganados o perdidos de local.
+################################# Vericar partidos ganados o perdidos de local.
 def partidosganados():
     localovisitante = input("Verifique los partidos ganados de su equipos elija: local o visitante ")
     global nombre_archivo
@@ -108,7 +108,7 @@ def partidosperdidos():
 
 
 
-# FUNCION PARA OBTENER LOS PARTIDOS QUE GANO, EMPATO O PERDIO DE LOS ULTIMOS 10
+########################## FUNCION PARA OBTENER LOS PARTIDOS QUE GANO, EMPATO O PERDIO DE LOS ULTIMOS 10
 
 def ultimos10():
     global nombre_archivo
@@ -126,7 +126,7 @@ def ultimos10():
                 lineas_filtradas.append(line)
 
 
-    # Grabar un nuevo csv con los partidos solo del equipo ingresado
+############################ Grabar un nuevo csv con los partidos solo del equipo ingresado
     archivo.close()
     f = open('./futbol_python/porequipo.csv','w').writelines([line for line in lineas_filtradas])
    
@@ -157,14 +157,10 @@ def ultimos10():
     print("De los ultimos 10 partidos", equipoingresado,"gano",partidosganados,"empato",partidosempatados,"perdio",partidosperdidos)
     if partidosganados > partidosperdidos: print(equipoingresado,"gano mas partidos que los que perdio")
     if partidosganados < partidosperdidos: print(equipoingresado,"perdio mas partidos que los que gano")
-  
 
 
+################################# Contra quien jugó el último partido de local o de visitante.
 
-
-
-
-#Contra quien jugó el último partido de local o de visitante.
 def ultimorival():
     global nombre_archivo
     global equipoingresado
@@ -190,11 +186,8 @@ def ultimorival():
         else:
             print('Debe escribir "local" o "visitante"')
 
+################################# Como le fue al país históricamente jugando contra otro país indicado.
 
-
-
-
-#Como le fue al país históricamente jugando contra otro país indicado.
 def historicovs():
     global nombre_archivo
     global equipoingresado
@@ -205,7 +198,7 @@ def historicovs():
     with open(nombre_archivo, "r") as archivo4:
         partidos = list(csv.DictReader(archivo4))
 
-# FUNCION PARA OBTENER RESULTADOS CONTRA UN EQUIPO ESPECIFICO
+################################# FUNCION PARA OBTENER RESULTADOS CONTRA UN EQUIPO ESPECIFICO
         for objeto in partidos:
             if objeto['home_team'] == equipoingresado and objeto['away_team'] == equipoadversario:
                 if objeto['home_score'] > objeto['away_score']: 
@@ -236,7 +229,7 @@ def historicovs():
 
 
 
-#############################MAIN###################################################################################################################################
+#################################                           MAIN                    ###################################################################################################################################
 
 if __name__ == '__main__':
     # Variable para la fuente de datos
