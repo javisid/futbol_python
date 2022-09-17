@@ -31,10 +31,8 @@ def presentacion_listaequipos():
         for fila in partidos:
             equipo = fila[2]
             nombre_equipos.append(equipo)
-#print(nombre_equipos)
     nombres_norep = list(OrderedDict.fromkeys(nombre_equipos))
     nombres_norep2 = sorted(nombres_norep)
-#    print(nombres_norep)
     for equipo in nombres_norep2:
         print(equipo)
     return nombres_norep        
@@ -53,7 +51,7 @@ def validacionequipo():
                 equipook = equipook +1
                 return equipo_ingresado
 
-################################# Vericar partidos ganados o perdidos de local.
+################################# Verificar partidos ganados de local o visitante.
 def partidosganados():
     localovisitante = input("Verifique los partidos ganados de su equipos elija: local o visitante ")
     global nombre_archivo
@@ -73,6 +71,9 @@ def partidosganados():
             elif resultado[2] == equipoingresado and resultado[3] < resultado[4]:
                 partidosganadosvisit = partidosganadosvisit + 1 
 
+    print()
+    print()
+
     if localovisitante == "local":
         print(f" {equipoingresado} gano {partidosganadoslocal} de local")
     elif localovisitante == "visitante":
@@ -80,6 +81,7 @@ def partidosganados():
     elif localovisitante != "local" or localovisitante != "visitante":
         print('Debe escribir "local" o "visitante"')
 
+################################# Verificar partidos perdidos  de local o visitante.
 
 def partidosperdidos():
     localovisitante = input("Verifique los partidos perdidos de su equipos elija: local o visitante ")
@@ -98,7 +100,9 @@ def partidosperdidos():
                 partidosperdidoslocal = partidosperdidoslocal + 1 
             elif resultado[2] == equipoingresado and resultado[3] > resultado[4]:
                 partidosperdidosvisit = partidosperdidosvisit + 1
-
+    print()
+    print()
+    
     if localovisitante == "local":
         print(f" {equipoingresado} perdio {partidosperdidoslocal} de local")
     if localovisitante == "visitante":
@@ -154,11 +158,14 @@ def ultimos10():
             partidosperdidos = partidosperdidos + 1
         elif objeto['away_team'] == equipoingresado and objeto['away_score'] < objeto['home_score']:
             partidosperdidos = partidosperdidos + 1
+    print()
+    print()
     print("De los ultimos 10 partidos", equipoingresado,"gano",partidosganados,"empato",partidosempatados,"perdio",partidosperdidos)
+    print()
     if partidosganados > partidosperdidos: print(equipoingresado,"gano mas partidos que los que perdio")
     if partidosganados < partidosperdidos: print(equipoingresado,"perdio mas partidos que los que gano")
-
-
+    print()
+    print()
 ################################# Contra quien jugó el último partido de local o de visitante.
 
 def ultimorival():
@@ -178,14 +185,16 @@ def ultimorival():
             equiporivaldelocal = resultado['away_team']
         for resultado in partidosvisit[-1 :]:
             equiporivaldevisitante = resultado['home_team']
-
+    print()
+    print()
         if localovisitante == "local":
             print(f" {equipoingresado} jugo su ultimo partido de local contra  {equiporivaldelocal}")
         elif localovisitante == "visitante":
             print(f" {equipoingresado} jugo su ultimo partido de visitante contra  {equiporivaldevisitante}")
         else:
             print('Debe escribir "local" o "visitante"')
-
+    print()
+    print()
 ################################# Como le fue al país históricamente jugando contra otro país indicado.
 
 def historicovs():
@@ -197,8 +206,6 @@ def historicovs():
     partidosempatados = 0
     with open(nombre_archivo, "r") as archivo4:
         partidos = list(csv.DictReader(archivo4))
-
-################################# FUNCION PARA OBTENER RESULTADOS CONTRA UN EQUIPO ESPECIFICO
         for objeto in partidos:
             if objeto['home_team'] == equipoingresado and objeto['away_team'] == equipoadversario:
                 if objeto['home_score'] > objeto['away_score']: 
@@ -219,12 +226,14 @@ def historicovs():
                 if objeto['away_score'] < objeto['home_score']:
                     partidosperdidos = partidosperdidos + 1
     partidostotal=partidosempatados+partidosganados+partidosperdidos
-
+    print()
+    print()
     if partidostotal < 1:
         print(f"No se regoistran partidos contra {equipoadversario}")
     elif partidostotal > 0:
         print(f"En el historial de {equipoingresado} contra {equipoadversario} jugaron un total de {partidostotal} donde {equipoingresado} gano {partidosganados}, perdio {partidosperdidos} y empataron {partidosempatados}")
-
+    print()
+    print()
 
 
 
