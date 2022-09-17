@@ -16,7 +16,7 @@ partidos.csv
 El programa consultará al usuario de que país desea obtener información y analizará el archivo. Posibles cálculos que podría realizar el sistema (el alumno puede agregar más resultados que desee al programa):
 - Determinar cuántas veces ganó un país de local o de visitante.
 - Determinar cuántas veces perdió un país de local o de visitante.
-- Determinar cómo le fue al país en los últimos “N” partidos jugados (ejemplo, resultados de los últimos 10 partidos, ¿ganó la mayoría?
+- Determinar cómo le fue al país en los últimos 10 partidos jugados (ejemplo, resultados de los últimos 10 partidos, ¿ganó la mayoría?
 - Contra quien jugó el último partido de local o de visitante.
 - Como le fue al país históricamente jugando contra otro país indicado.
 
