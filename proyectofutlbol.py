@@ -11,7 +11,8 @@ def menu_opciones():
     print("     3. Determinar cómo le fue al país en los últimos 10 partidos jugados")
     print("     4. Contra que rival jugó el último partido de local o de visitante.")
     print("     5. Como le fue al país históricamente jugando contra otro país indicado.")
-    print("     6. Salir del programa")
+    print("     6. Elegir otro equipo")
+    print("     7. Salir del programa")
     print("#################################################################################")
     print()
     print()
@@ -22,7 +23,7 @@ def menu_opciones():
 #Funcion para listar los equipos disponibles
 def presentacion_listaequipos():
     nombre_equipos = []
-    nombre_archivo = "./futbol_python/partidos.csv"
+    global nombre_archivo
     with open(nombre_archivo, "r") as archivo:
         partidos = csv.reader(archivo, delimiter=",")
     # Omitir el encabezado
@@ -55,7 +56,7 @@ def validacionequipo():
 # Vericar partidos ganados o perdidos de local.
 def partidosganados():
     localovisitante = input("Verifique los partidos ganados de su equipos elija: local o visitante ")
-    nombre_archivo = "./futbol_python/partidos.csv"
+    global nombre_archivo
     global equipoingresado
     partidosganadoslocal = 0
     partidosganadosvisit = 0
@@ -82,7 +83,7 @@ def partidosganados():
 
 def partidosperdidos():
     localovisitante = input("Verifique los partidos perdidos de su equipos elija: local o visitante ")
-    nombre_archivo = "./futbol_python/partidos.csv"
+    global nombre_archivo
     global equipoingresado
     partidosperdidoslocal = 0
     partidosperdidosvisit = 0
@@ -110,7 +111,7 @@ def partidosperdidos():
 # FUNCION PARA OBTENER LOS PARTIDOS QUE GANO, EMPATO O PERDIO DE LOS ULTIMOS 10
 
 def ultimos10():
-    nombre_archivo = "./futbol_python/partidos.csv"
+    global nombre_archivo
     global equipoingresado 
 
 
@@ -165,8 +166,8 @@ def ultimos10():
 
 #Contra quien jugó el último partido de local o de visitante.
 def ultimorival():
-    nombre_archivo = "./futbol_python/partidos.csv"
-    equipoingresado = "Argentina"
+    global nombre_archivo
+    global equipoingresado
     with open(nombre_archivo, "r") as archivo3:
         localovisitante = input("Verifique los partidos perdidos de su equipos elija: local o visitante ")
         partidos = list(csv.DictReader(archivo3))
@@ -195,7 +196,7 @@ def ultimorival():
 
 #Como le fue al país históricamente jugando contra otro país indicado.
 def historicovs():
-    nombre_archivo = "./futbol_python/partidos.csv"
+    global nombre_archivo
     global equipoingresado
     equipoadversario = input("Elija el pais rival: ")
     partidosperdidos = 0
@@ -238,43 +239,25 @@ def historicovs():
 #############################MAIN###################################################################################################################################
 
 if __name__ == '__main__':
-
-
+    # Variable para la fuente de datos
+    nombre_archivo = "./partidos.csv"
+    # Variables para el menu
     salir = False
     opcion = 0
 
     print("########################################################")
     print("Bienvenidos a Estadisticas futbol")
     print("########################################################")
-
-
-    print("########################################################")
     print("Puede obtener algunos datos de los siguientes equipos disponibles")
     print("########################################################")
-   
-
-
-#    presentacion_listaequipos()
+  
     equiposvalidos = presentacion_listaequipos()
-#    equipook=0
-#    while equipook == 0:
-#        equipoingresado=input("Ingrese el nombre del equipo, tal cual esta escrito en el listado: ")#
-#        for i in equiposvalidos:
-#            if  i != equipoingresado:
-#                equipook = equipook + 0
-#            elif i == equipoingresado:
-#                equipook = equipook +1
-
-                
- ##   equipoingresado = presentacion_listaequipos() 
     equipoingresado = validacionequipo()       
 
-
+    print()
     print(f"Elija que desea saber de {equipoingresado}")
-    
-    
-    
-    
+    print()
+
 
     while not salir:
         if opcion == "1": 
@@ -288,11 +271,14 @@ if __name__ == '__main__':
         if opcion == "5":
             historicovs()
         if opcion == "6":
+            equiposvalidos = presentacion_listaequipos()
+            equipoingresado = validacionequipo()     
+        if opcion == "7":
             print("MUCHAS GRACIAS! VUELVA PRONTOS!")
             salir = True     
         else:
             menu_opciones()
-            opcion = input("elegir una opciones del 1 al 6: ")
+            opcion = input("elegir una opciones del 1 al 7: ")
     
 
 
